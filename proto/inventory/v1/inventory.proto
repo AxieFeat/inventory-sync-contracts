@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package inventory;
+
+service InventoryService {
+  rpc GetInventory(GetInventoryRequest) returns (GetInventoryResponse);
+  rpc SetItem(SetItemRequest) returns (SetItemResponse);
+}
+
+message GetInventoryRequest {
+  uint64 player_id = 1;
+}
+
+message GetInventoryResponse {
+  uint64 player_id = 1;
+  repeated Item items = 2;
+}
+
+message Item {
+  uint32 slot = 1;
+  string material = 2;
+  uint32 amount = 3;
+}
+
+message SetItemRequest {
+  uint64 player_id = 1;
+  Item item = 2;
+}
+
+message SetItemResponse {
+  bool success = 1;
+}
